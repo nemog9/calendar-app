@@ -36,3 +36,11 @@
     transform: rotate(360deg);
   }
 }
+
+.modal {
+  z-index: 99;
+}
+
+.modal_overlay {
+  z-index: 100;
+}
