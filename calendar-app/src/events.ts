@@ -30,6 +30,7 @@ export const events = [
         title: '振り返りつつ、いつまでも祝ってよいぞっ！ #名取爆誕',
         start: '2022-03-09 21:00',
         end: '2022-03-09 24:00',
-        color: 'red'
+        color: 'red',
+        urlText: 'https://youtu.be/-wv3OeHe6JE'
     }
 ]

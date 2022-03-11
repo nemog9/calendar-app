@@ -8,7 +8,8 @@ import { events } from './events';
 import Modal, { Styles } from 'react-modal';
 
 function App() {
-  const [ isOpen, setIsOpen ] = useState(false)
+  const [ isOpen, setIsOpen ] = useState<boolean>(false)
+  const [ modalInfo, setModalInfo ] = useState<EventClickArg>()
   const closeModal = () => {
     setIsOpen(false)
   }
@@ -40,10 +41,12 @@ function App() {
       zIndex: 100,
       display: 'flex',
       justifyContent: 'center',
-      alignItems: 'center'
+      alignItems: 'center',
+      width: '50%'
     }
   }
   const eventClick = (info: EventClickArg) => {
+    setModalInfo(info)
     setIsOpen(true)
   }
   return (
@@ -64,7 +67,33 @@ function App() {
         isOpen={isOpen}
         onRequestClose={closeModal}
       >
-        
+        <table>
+          <thead>
+            <tr>
+              <th colSpan={2}>{modalInfo && modalInfo.event.title}</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>説明</td>
+              {modalInfo && (
+                <td>
+                  {modalInfo.event.extendedProps.desc}
+                </td>
+              )}
+            </tr>
+            <tr>
+              <td>URL</td>
+              {modalInfo && (
+              <td>
+                <a href={modalInfo.event.extendedProps.urlText} target="_blank" rel="noopener noreferrer">
+                  {modalInfo.event.extendedProps.urlText}
+                </a>
+                </td>
+              )}
+            </tr>
+          </tbody>
+        </table>
       </Modal>
     </>
   );
